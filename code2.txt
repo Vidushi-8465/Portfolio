@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Johnson - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);;
+            padding: 1rem 2rem;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: slideUp 1s ease 0.5s forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #cccccc;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: slideUp 1s ease 1s forwards;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #aaaaaa;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: slideUp 1s ease 1.5s forwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            opacity: 0;
+            animation: slideUp 1s ease 2s forwards;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid #ff6b35;
+        }
+
+        .btn-secondary:hover {
+            background: #ff6b35;
+            transform: translateY(-2px);
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 80px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 0 auto;
+            animation: pulse 2s infinite;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #cccccc;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+
+        .stat-label {
+            color: #cccccc;
+            margin-top: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-item:hover {
+            background: rgba(255, 107, 53, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #333, #555);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 3rem;
+            color: #666;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #ff6b35;
+        }
+
+        .project-description {
+            color: #cccccc;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: rgba(255, 107, 53, 0.2);
+            color: #ff6b35;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* Education Section */
+        .timeline {
+            position: relative;
+            margin-top: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #ff6b35, #f7931e);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: calc(50% + 30px);
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-left: calc(50% + 30px);
+            padding-right: 0;
+            transform: translateX(50px);
+        }
+
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            max-width: 300px;
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 15px;
+            height: 15px;
+            background: #ff6b35;
+            border-radius: 50%;
+            border: 3px solid #1a1a1a;
+        }
+
+        .timeline-date {
+            color: #ff6b35;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-subtitle {
+            color: #cccccc;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #cccccc;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #aaaaaa;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                padding-left: 60px;
+                padding-right: 0;
+            }
+
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+                padding-right: 0;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: #2d2d2d;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close:hover {
+            color: #ff6b35;
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Alex Johnson</div>
+            <ul class="nav-links">
+                <li><a onclick="scrollToSection('home')">Home</a></li>
+                <li><a onclick="scrollToSection('about')">About</a></li>
+                <li><a onclick="scrollToSection('projects')">Projects</a></li>
+                <li><a onclick="scrollToSection('education')">Education</a></li>
+                <li><a onclick="scrollToSection('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-element">⚡</div>
+        <div class="floating-element">💻</div>
+        <div class="floating-element">🚀</div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">Hello, I'm Alex Johnson</h1>
+            <p class="hero-subtitle">Full Stack Developer & UI/UX Designer</p>
+            <p class="hero-description">
+                I create beautiful, functional, and user-centered digital experiences that make a difference.
+                Passionate about turning ideas into reality through code and design.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary" onclick="scrollToSection('projects')">View My Work</a>
+                <a href="#contact" class="btn btn-secondary" onclick="scrollToSection('contact')">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <div class="profile-img">👨‍💻</div>
+            </div>
+            <div class="about-text">
+                <p>
+                    I'm a passionate full-stack developer with over 5 years of experience creating digital solutions 
+                    that bridge the gap between design and technology. I specialize in building responsive web applications 
+                    using modern technologies like React, Node.js, and cloud platforms.
+                </p>
+                <p>
+                    My journey in tech started with a curiosity about how things work, which led me to pursue computer science. 
+                    Today, I'm driven by the challenge of solving complex problems and creating intuitive user experiences 
+                    that make technology accessible to everyone.
+                </p>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">120+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Client Satisfaction</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+        </div>
+
+        <div class="skills-grid">
+            <div class="skill-item">
+                <div class="skill-icon">⚛️</div>
+                <div>React</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">📗</div>
+                <div>Node.js</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🐍</div>
+                <div>Python</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">☁️</div>
+                <div>AWS</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🎨</div>
+                <div>UI/UX</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">📱</div>
+                <div>Mobile Dev</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2 class="section-title">My Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card" onclick="openProjectModal('project1')">
+                <div class="project-image">🛒</div>
+                <h3 class="project-title">E-Commerce Platform</h3>
+                <p class="project-description">
+                    A full-featured e-commerce solution with payment integration, inventory management, and admin dashboard.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Stripe</span>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openProjectModal('project2')">
+                <div class="project-image">📊</div>
+                <h3 class="project-title">Data Analytics Dashboard</h3>
+                <p class="project-description">
+                    Real-time analytics dashboard with interactive charts and data visualization for business insights.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Vue.js</span>
+                    <span class="tech-tag">D3.js</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openProjectModal('project3')">
+                <div class="project-image">🎵</div>
+                <h3 class="project-title">Music Streaming App</h3>
+                <p class="project-description">
+                    Mobile-first music streaming application with playlist management and social features.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">React Native</span>
+                    <span class="tech-tag">Firebase</span>
+                    <span class="tech-tag">Redux</span>
+                    <span class="tech-tag">Spotify API</span>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openProjectModal('project4')">
+                <div class="project-image">🤖</div>
+                <h3 class="project-title">AI Chat Assistant</h3>
+                <p class="project-description">
+                    Intelligent chatbot with natural language processing and machine learning capabilities.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">TensorFlow</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">NLP</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <h2 class="section-title">Education & Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2023 - Present</div>
+                    <div class="timeline-title">Senior Full Stack Developer</div>
+                    <div class="timeline-subtitle">Tech Innovation Corp</div>
+                    <p>Leading development of enterprise-level applications and mentoring junior developers.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2021 - 2023</div>
+                    <div class="timeline-title">Full Stack Developer</div>
+                    <div class="timeline-subtitle">Digital Solutions LLC</div>
+                    <p>Developed and maintained multiple client applications using modern web technologies.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2018 - 2022</div>
+                    <div class="timeline-title">B.S. Computer Science</div>
+                    <div class="timeline-subtitle">University of Technology</div>
+                    <p>Graduated Magna Cum Laude with focus on software engineering and artificial intelligence.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2019 - 2021</div>
+                    <div class="timeline-title">Frontend Developer</div>
+                    <div class="timeline-subtitle">StartUp Hub</div>
+                    <p>Built responsive web interfaces and collaborated with design teams on user experience.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-content">
+            <div class="contact-form">
+                <form onsubmit="submitForm(event)">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody">
+                <!-- Modal content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Scroll progress bar
+        function updateScrollProgress() {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollProgress = (scrollTop / scrollHeight) * 100;
+            document.querySelector('.scroll-progress').style.width = scrollProgress + '%';
+        }
+
+        // Timeline animation on scroll
+        function animateTimeline() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    item.classList.add('animate');
+                }
+            });
+        }
+
+        // Project modal functionality
+        function openProjectModal(projectId) {
+            const modal = document.getElementById('projectModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            const projectDetails = {
+                project1: {
+                    title: 'E-Commerce Platform',
+                    description: 'A comprehensive e-commerce solution built with modern web technologies. Features include user authentication, product catalog, shopping cart, payment processing with Stripe, order management, and an admin dashboard for inventory control.',
+                    features: ['User Authentication & Authorization', 'Product Catalog with Search & Filters', 'Shopping Cart & Wishlist', 'Secure Payment Processing', 'Order Tracking & Management', 'Admin Dashboard', 'Responsive Design', 'SEO Optimization'],
+                    technologies: 'React, Node.js, Express, MongoDB, Stripe API, JWT, Material-UI',
+                    github: 'https://github.com/alexjohnson/ecommerce-platform',
+                    demo: 'https://demo-ecommerce.alexjohnson.dev'
+                },
+                project2: {
+                    title: 'Data Analytics Dashboard',
+                    description: 'Real-time business intelligence dashboard that provides comprehensive insights through interactive visualizations. Built for enterprises to monitor KPIs, track performance metrics, and make data-driven decisions.',
+                    features: ['Real-time Data Processing', 'Interactive Charts & Graphs', 'Custom Report Generation', 'Data Export Functionality', 'Multi-user Support', 'Responsive Design', 'API Integration', 'Advanced Filtering'],
+                    technologies: 'Vue.js, D3.js, Python, FastAPI, PostgreSQL, Redis, Docker',
+                    github: 'https://github.com/alexjohnson/analytics-dashboard',
+                    demo: 'https://demo-analytics.alexjohnson.dev'
+                },
+                project3: {
+                    title: 'Music Streaming App',
+                    description: 'Mobile-first music streaming application with social features. Users can create playlists, follow artists, share music with friends, and discover new tracks through personalized recommendations.',
+                    features: ['Music Streaming & Playback', 'Playlist Management', 'Social Features & Sharing', 'Music Discovery & Recommendations', 'Offline Listening', 'Artist Profiles', 'Search & Browse', 'User Profiles'],
+                    technologies: 'React Native, Firebase, Redux, Spotify API, Node.js, Express',
+                    github: 'https://github.com/alexjohnson/music-streaming-app',
+                    demo: 'https://demo-music.alexjohnson.dev'
+                },
+                project4: {
+                    title: 'AI Chat Assistant',
+                    description: 'Intelligent conversational AI assistant powered by machine learning. Capable of understanding natural language, providing contextual responses, and learning from user interactions to improve over time.',
+                    features: ['Natural Language Processing', 'Context-Aware Responses', 'Multi-language Support', '

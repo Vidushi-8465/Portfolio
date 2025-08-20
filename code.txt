@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio • Your Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0e1116;        /* page background */
+      --panel:#151a21;     /* cards/panels */
+      --muted:#9aa4b2;     /* secondary text */
+      --text:#e8eef9;      /* primary text */
+      --accent:#ff6a57;    /* coral accent */
+      --accent-2:#ffd166;  /* warm highlight */
+      --ring: radial-gradient(60% 60% at 50% 50%, rgba(255,106,87,.35), rgba(255,106,87,0) 60%);
+      --max:1200px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;scroll-behavior:smooth;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    /* ===== Header ===== */
+    header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(14,17,22,.9), rgba(14,17,22,.65));backdrop-filter: blur(6px);border-bottom:1px solid #1f242c}
+    .nav{max-width:var(--max);margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.5px}
+    .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 16px var(--accent)}
+    nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+    nav a{opacity:.86}
+    nav a.active, nav a:hover{opacity:1}
+
+    /* ===== Layout ===== */
+    .section{max-width:var(--max);margin:auto;padding:72px 20px}
+    .grid-2{display:grid;grid-template-columns:1.1fr 1fr;gap:56px}
+    .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid #222833;background:#12161c;padding:6px 12px;border-radius:999px;font-size:12px;color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;gap:10px;border:1px solid #27303a;background:linear-gradient(180deg,#1a212a,#131920);padding:12px 18px;border-radius:12px;color:var(--text);box-shadow:0 2px 0 #0a0e13 inset, 0 0 0 0 rgba(0,0,0,0);transition:.2s transform,.2s box-shadow}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .btn.primary{border-color:transparent;background:linear-gradient(180deg,#ff6a57,#ff3b2e);color:#fff}
+
+    h1{font-size:48px;letter-spacing:.3px;margin:6px 0 10px}
+    h2{font-size:34px;margin:0 0 16px}
+    h3{font-size:20px;margin:0 0 8px}
+    p{color:var(--muted);line-height:1.75}
+
+    /* ===== Hero ===== */
+    .hero{padding-top:86px}
+    .hero .badge{margin-bottom:14px}
+    .hero-visual{position:relative;display:grid;place-items:center}
+    .ring{position:absolute;inset:-6px;background:var(--ring);filter:blur(6px)}
+    .pfp{border-radius:20px;overflow:hidden;border:1px solid #252b35;box-shadow:0 25px 80px rgba(0,0,0,.45)}
+
+    .techs{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+    .techs .pill{background:#0f1319;border-color:#242a33}
+
+    /* ===== About ===== */
+    .about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+    .card{background:var(--panel);border:1px solid #202631;border-radius:16px;padding:22px;box-shadow:0 18px 50px rgba(0,0,0,.25)}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px}
+    .stat{background:#0f141a;border:1px solid #222a35;border-radius:12px;padding:18px;text-align:center}
+    .stat b{font-size:28px}
+
+    /* ===== Projects ===== */
+    .projects{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .project-card{grid-column:span 4;background:var(--panel);border:1px solid #202631;border-radius:16px;overflow:hidden;cursor:pointer;transition:.25s transform,.2s box-shadow}
+    .project-card:hover{transform:translateY(-6px);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+    .project-thumb{aspect-ratio:16/9;background:#0c0f14;display:grid;place-items:center}
+    .project-body{padding:16px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .tag{font-size:12px;border:1px solid #2a3240;padding:4px 8px;border-radius:999px;color:var(--muted)}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:60}
+    .modal.open{display:flex}
+    .modal-card{max-width:780px;width:100%;background:var(--panel);border:1px solid #2a3340;border-radius:18px;box-shadow:0 30px 120px rgba(0,0,0,.55);overflow:hidden}
+    .modal-header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #202733}
+    .modal-body{padding:18px}
+    .close{border:none;background:#0e1319;border:1px solid #2a3240;color:var(--text);padding:8px 10px;border-radius:10px;cursor:pointer}
+
+    /* ===== Education Timeline ===== */
+    .timeline{position:relative;margin:20px 0}
+    .timeline::before{content:"";position:absolute;left:22px;top:0;bottom:0;width:2px;background:linear-gradient(var(--accent),transparent 65%)}
+    .t-item{display:grid;grid-template-columns:60px 1fr;gap:16px;margin:26px 0;opacity:.2;transform:translateY(20px);transition:opacity .6s, transform .6s}
+    .t-item.reveal{opacity:1;transform:none}
+    .t-dot{width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px rgba(255,106,87,.15);margin-left:16px;margin-top:4px}
+    .t-card{background:var(--panel);border:1px solid #222a36;border-radius:14px;padding:16px}
+    .t-date{font-size:12px;color:var(--accent-2);letter-spacing:.4px}
+
+    /* ===== Contact ===== */
+    form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    form .full{grid-column:1/-1}
+    input,textarea{background:#0f141a;border:1px solid #232c38;color:var(--text);padding:14px 12px;border-radius:12px;outline:none}
+    textarea{min-height:140px;resize:vertical}
+
+    /* ===== Footer ===== */
+    footer{border-top:1px solid #1d232c;padding:30px 20px;color:var(--muted);text-align:center}
+
+    /* scroll reveal base */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease, transform .7s ease}
+    .reveal.in{opacity:1;transform:none}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .grid-2{grid-template-columns:1fr}
+      .projects .project-card{grid-column:span 6}
+    }
+    @media (max-width:700px){
+      nav ul{gap:14px}
+      .projects .project-card{grid-column:span 12}
+      form{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr}
+      .about-wrap{grid-template-columns:1fr}
+      h1{font-size:38px}
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Header / Nav ===== -->
+  <header>
+    <div class="nav">
+      <div class="brand"><span class="dot"></span> <span>Vidushi • Portfolio</span></div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a class="nav-link active" href="#home">Home</a></li>
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#projects">Projects</a></li>
+          <li><a class="nav-link" href="#education">Education</a></li>
+          <li><a class="nav-link" href="#contact">Contact me</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero / Home ===== -->
+  <section id="home" class="section hero grid-2">
+    <div>
+      <span class="pill badge">Hello 👋 I’m <b style="color:#fff">Vidushi</b></span>
+      <h1>Software Developer</h1>
+      <p>I build reliable web apps and playful interfaces. This single-page portfolio shows a quick about, projects with animated cards, a scroll-linked education timeline, and a contact form that emails me using EmailJS.</p>
+      <div style="display:flex;gap:12px;margin-top:18px">
+        <a class="btn primary" href="#projects">Got a project?</a>
+        <a class="btn" href="#about">My resume (About)</a>
+      </div>
+      <div class="techs">
+        <span class="pill">HTML5</span>
+        <span class="pill">CSS</span>
+        <span class="pill">JavaScript</span>
+        <span class="pill">Node.js</span>
+        <span class="pill">React</span>
+        <span class="pill">Git</span>
+        <span class="pill">GitHub</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="ring" aria-hidden="true"></div>
+      <div class="pfp">
+        <img alt="profile" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1080&auto=format&fit=crop"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section id="about" class="section">
+    <h2>About me</h2>
+    <div class="about-wrap reveal">
+      <div class="card">
+        <h3>Who am I?</h3>
+        <p>I started my software journey from curiosity and a love for building things from scratch. I enjoy crafting pixel-perfect UIs and shipping full‑stack features that feel fast and intuitive. When I’m not coding, I explore CTFs and security writeups to sharpen my problem‑solving.
+        </p>
+        <div class="stats">
+          <div class="stat"><b>25+</b><div style="color:var(--muted)">Completed Projects</div></div>
+          <div class="stat"><b>95%</b><div style="color:var(--muted)">Client Satisfaction</div></div>
+          <div class="stat"><b>3+</b><div style="color:var(--muted)">Years Experience</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>What I do</h3>
+        <ul style="margin:0;padding-left:18px;line-height:1.9;color:var(--muted)">
+          <li>Website Development — responsive, accessible, and SEO‑friendly</li>
+          <li>App Development — modern SPA/MPA with clean architecture</li>
+          <li>Website Hosting — CI/CD, domains, and basic DevOps</li>
+        </ul>
+        <div style="display:flex;gap:10px;margin-top:14px">
+          <span class="pill">TypeScript</span>
+          <span class="pill">React</span>
+          <span class="pill">Express</span>
+          <span class="pill">MongoDB</span>
+          <span class="pill">Tailwind</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Projects ===== -->
+  <section id="projects" class="section">
+    <h2>Projects</h2>
+    <p class="reveal">Click any card to see details.</p>
+    <div class="projects" style="margin-top:16px">
+      <!-- Card 1 -->
+      <article class="project-card reveal" data-project="p1">
+        <div class="project-thumb"><span class="pill">Next.js • REST</span></div>
+        <div class="project-body">
+          <h3>TaskFlow</h3>
+          <p class="muted">Kanban task manager with drag‑and‑drop, auth, and real‑time updates.</p>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">Socket.io</span><span class="tag">MongoDB</span></div>
+        </div>
+      </article>
+      <!-- Card 2 -->
+      <article class="project-card reveal" data-project="p2">
+        <div class="project-thumb"><span class="pill">React • API</span></div>
+        <div class="project-body">
+          <h3>Weatherly</h3>
+          <p class="muted">Minimal weather dashboard with hourly charts and saved cities.</p>
+          <div class="tags"><span class="tag">React</span><span class="tag">Chart.js</span><span class="tag">OpenWeather</span></div>
+        </div>
+      </article>
+      <!-- Card 3 -->
+      <article class="project-card reveal" data-project="p3">
+        <div class="project-thumb"><span class="pill">Node • Auth</span></div>
+        <div class="project-body">
+          <h3>AuthKit</h3>
+          <p class="muted">Plug‑and‑play auth starter with JWT, sessions, and RBAC.</p>
+          <div class="tags"><span class="tag">Node</span><span class="tag">Express</span><span class="tag">PostgreSQL</span></div>
+        </div>
+      </article>
+      <!-- Card 4 -->
+      <article class="project-card reveal" data-project="p4">
+        <div class="project-thumb"><span class="pill">Docs • UI</span></div>
+        <div class="project-body">
+          <h3>DocuSpark</h3>
+          <p class="muted">Elegant documentation theme with search and dark mode.</p>
+          <div class="tags"><span class="tag">Vite</span><span class="tag">MDX</span><span class="tag">Algolia</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== Education ===== -->
+  <section id="education" class="section">
+    <h2>Education</h2>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-card">
+          <div class="t-date">2023 — Present</div>
+          <h3>B.Tech, Computer Science</h3>
+          <p>Core CS with electives in cybersecurity and ML. Active in CTF club; organized workshops and mini‑hackathons.</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-card">
+          <div class="t-date">2021 — 2023</div>
+          <h3>Higher Secondary</h3>
+          <p>PCM with Computer Science. Built first websites and learned version control and basic networking.</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-card">
+          <div class="t-date">2019 — 2021</div>
+          <h3>Secondary School</h3>
+          <p>Won regional coding challenge; started tinkering with puzzles and crypto basics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section id="contact" class="section">
+    <h2>Contact me</h2>
+    <p class="reveal">Fill the form and it will send an email via EmailJS (client‑side). Replace the placeholders with your keys (see comments in code).</p>
+    <form id="contact-form" class="reveal">
+      <input required name="name" placeholder="Your name" />
+      <input required name="email" type="email" placeholder="Email address" />
+      <input name="phone" placeholder="Phone number" />
+      <textarea required class="full" name="message" placeholder="Your message"></textarea>
+      <button class="btn primary full" type="submit">Send Message</button>
+      <div id="form-status" class="full" style="color:var(--muted)"></div>
+    </form>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Vidushi — Built with HTML, CSS & JS · Dark theme with subtle animations
+  </footer>
+
+  <!-- EmailJS (client-side email) -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    // ===== Utilities =====
+    const $ = s => document.querySelector(s);
+    const $$ = s => Array.from(document.querySelectorAll(s));
+
+    // Update year
+    $('#year').textContent = new Date().getFullYear();
+
+    // Active nav link on scroll
+    const sections = ['home','about','projects','education','contact'].map(id=>document.getElementById(id));
+    const navLinks = $$('.nav-link');
+    const ioNav = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          navLinks.forEach(a=>a.classList.remove('active'));
+          const active = document.querySelector(`a[href="#${e.target.id}"]`);
+          active && active.classList.add('active');
+        }
+      })
+    },{rootMargin:'-50% 0px -50% 0px',threshold:0});
+    sections.forEach(sec=>ioNav.observe(sec));
+
+    // Simple scroll reveal
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    },{threshold:.2});
+    $$('.reveal, .project-card, .t-item').forEach(el=>io.observe(el));
+
+    // Timeline animation (individual cards)
+    const ioTime = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('reveal'); ioTime.unobserve(e.target); }});
+    },{threshold:.35});
+    $$('.t-item').forEach(el=>ioTime.observe(el));
+
+    // ===== Project Modals =====
+    const modal = document.createElement('div');
+    modal.className='modal';
+    modal.innerHTML=`<div class="modal-card" role="dialog" aria-modal="true">
+        <div class="modal-header">
+          <strong id="modal-title">Project</strong>
+          <button class="close" id="modal-close">Close</button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+      </div>`;
+    document.body.appendChild(modal);
+    $('#modal-close').addEventListener('click',()=>modal.classList.remove('open'));
+    modal.addEventListener('click',e=>{ if(e.target===modal) modal.classList.remove('open'); });
+
+    const projectDetails = {
+      p1: {
+        title: 'TaskFlow — Kanban task manager',
+        html: `<p>Full‑stack app with column swimlanes, drag‑and‑drop via <b>SortableJS</b>, and optimistic UI updates. Real‑time board sync using <b>Socket.io</b>. Deployed on Vercel with a Prisma + MongoDB backend.</p>
+               <ul><li>Email/password & OAuth login</li><li>Role‑based permissions per board</li><li>Server actions for latency‑free UX</li></ul>`
+      },
+      p2: {
+        title: 'Weatherly — Minimal weather dashboard',
+        html: `<p>SPA that consumes the OpenWeather API and visualizes data with <b>Chart.js</b>. Features favourite cities, hourly forecasts, and a clean card UI with skeleton loaders.</p>`
+      },
+      p3: {
+        title: 'AuthKit — Authentication boilerplate',
+        html: `<p>Node/Express starter with <b>JWT</b> and cookie sessions, CSRF protection, rate limiting, password reset, and ready‑to‑use email templates.</p>`
+      },
+      p4: {
+        title: 'DocuSpark — Documentation theme',
+        html: `<p>Fast static docs with full‑text search (Algolia), MDX components, code copy buttons, and accessible dark/light themes.</p>`
+      }
+    };
+
+    $$('.project-card').forEach(card=>{
+      card.addEventListener('click',()=>{
+        const id = card.dataset.project;
+        const data = projectDetails[id];
+        if(!data) return;
+        $('#modal-title').textContent = data.title;
+        $('#modal-body').innerHTML = data.html;
+        modal.classList.add('open');
+      });
+    });
+
+    // ===== Contact Form (EmailJS) =====
+    /*  ⚠️ How to make email sending work:
+        1) Create an account at https://www.emailjs.com/
+        2) Add an Email Service and a Template with fields: name, email, phone, message
+        3) Put your Public Key here (emailjs.init('PUBLIC_KEY'))
+        4) Replace SERVICE_ID and TEMPLATE_ID below.
+       This is 100% frontend and keeps this a "full working website frontend". */
+
+    // Replace with your EmailJS Public Key
+    emailjs.init('PUBLIC_KEY_HERE');
+
+    $('#contact-form').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const fd = new FormData(e.currentTarget);
+      const payload = Object.fromEntries(fd.entries());
+      const status = $('#form-status');
+      status.textContent = 'Sending…';
+      try{
+        await emailjs.send('SERVICE_ID','TEMPLATE_ID', payload);
+        status.textContent = 'Thanks! Your message has been sent.';
+        e.currentTarget.reset();
+      }catch(err){
+        console.error(err);
+        status.textContent = 'Could not send right now. Please check your EmailJS keys or try again later.';
+      }
+    });
+  </script>
+</body>
+</html>
