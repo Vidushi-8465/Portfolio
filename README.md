@@ -2,6 +2,8 @@
 
 Hi! I’m Vidushi Bhardwaj, a passionate Computer Science Engineering student (BTech, 2027) with interests in Web Development, AI/ML, and Generative AI. I love building projects that combine creativity with technology and exploring the latest in LLMs and agentic AI.
 
+You can find my portfolio website over here --> https://vidushi-8465.github.io/Portfolio/
+
 🚀 What I’m Learning
 
 >Web Development (HTML, CSS, JavaScript, React)<br>
