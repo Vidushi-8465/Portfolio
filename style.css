@@ -1,4 +1,4 @@
-/* ===== Root Color Palette (New Blue Theme) ===== */
+/*  Root Color Palette (New Blue Theme)  */
 :root {
   --bg: hsl(228.57, 77.78%, 5.29%);       /* Deep navy background */
   --panel: hsl(226, 25%, 20%);            /* Card & panel background */
@@ -10,7 +10,7 @@
   --max: 1200px;
 }
 
-/* ===== Base Reset ===== */
+/*  Base Reset  */
 * { box-sizing: border-box; }
 html, body {
   margin: 0;
@@ -23,7 +23,7 @@ html, body {
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 
-/* ===== Header / Navbar ===== */
+/*  Header / Navbar  */
 header {
   position: sticky;
   top: 0;
