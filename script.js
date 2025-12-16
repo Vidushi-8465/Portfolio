@@ -46,3 +46,73 @@ document.querySelectorAll("a[href^='#']").forEach((anchor) => {
       });
   });
 });
+
+/* ===== Hero Role Typewriter Effect ===== */
+const roleElement = document.querySelector(".text-role");
+
+if (roleElement) {
+  const roles = [
+    "Oracle Certified Generative AI Professional", 
+    "AI/ML Intern",
+    "Frontend Developer",
+    "Building AI Agents",
+    "RAG learner",
+    "LLM Enthusiast"  ];
+
+  let roleIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+
+  const baseTypeSpeed = 70;
+  const baseDeleteSpeed = 60;
+  const holdTime = 1400;
+
+  function typeRole() {
+    const current = roles[roleIndex];
+    const length = current.length;
+
+    if (!deleting) {
+      charIndex++;
+      roleElement.textContent = current.slice(0, charIndex);
+
+      if (charIndex === current.length) {
+        deleting = true;
+        setTimeout(typeRole, holdTime);
+        return;
+      }
+    } else {
+      charIndex--;
+      roleElement.textContent = current.slice(0, charIndex);
+
+      if (charIndex === 0) {
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+      }
+    }
+    // Ease-in / ease-out timing for typing & deleting
+    const progress = Math.max(0, Math.min(1, charIndex / length || 0.001));
+    const easeInOut = progress < 0.5
+      ? 2 * progress * progress
+      : -1 + (4 - 2 * progress) * progress;
+
+    const typedDelay = baseTypeSpeed + (1 - easeInOut) * 80;   // slower at start & end
+    const deleteDelay = baseDeleteSpeed + (1 - easeInOut) * 60;
+
+    setTimeout(typeRole, deleting ? deleteDelay : typedDelay);
+  }
+
+  typeRole();
+}
+
+/* ===== Project Card Flip Effect ===== */
+const projectCards = document.querySelectorAll(".project-card");
+
+projectCards.forEach((card) => {
+  card.addEventListener("click", function (e) {
+    // Don't flip if clicking on a link
+    if (e.target.closest("a")) {
+      return;
+    }
+    this.classList.toggle("flipped");
+  });
+});
