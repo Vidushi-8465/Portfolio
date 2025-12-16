@@ -34,15 +34,15 @@
   <section id="home" class="section hero grid-2">
     <div>
       <span class="pill badge">Hello 👋 I’m <b style="color:#fff">Vidushi</b></span>
-      <h1>Web Developer & UI/UX Designer | Exploring DevOps, Cybersecurity & AI Agents</h1>
-      <p>✨ Hey, I’m Vidushi Bhardwaj — a curious coder & designer who loves mixing creativity with tech. I play around with HTML, CSS, Java, SQL, UI/UX & Figma, and I’m currently 
-        leveling up in Python, JavaScript, Cybersecurity, DevOps, Cloud, and even AI agents (LangChain, LangGraph, n8n).
-        <br>
-        From building web apps & dashboards to exploring IoT & pipelines, I enjoy turning ideas into real projects. When I’m not coding, you’ll probably find me organizing events, 
-        brainstorming designs, or solving puzzles with snacks by my side. 🚀🍕.</p>
+      <h2>Web Developer & UI/UX Designer | Exploring DevOps & AI Agents | Alongside working on learning ML Models</h2>
+        <!-- Role text with fixed height to prevent movement -->
+    <div class="h-[30px] md:h-[40px] mt-4">
+      <p class="text-role text-white text-lg md:text-4xl tracking-wider font-light opacity-80 
+          text-left inline"></p>
+  </div>
       <div style="display:flex;gap:12px;margin-top:18px">
         <a class="btn primary" href="#projects">Got a project?</a>
-        <a class="btn" href="#about">My resume (About)</a>
+        <a class="btn" href="Vidushi Bhardwaj.pdf" download="Vidushi Bhardwaj.pdf">Download CV</a>
       </div>
       <div class="techs">
         <span class="pill">HTML5</span>
@@ -58,13 +58,9 @@
       <div class="ring" aria-hidden="true"></div>
       <div class="pfp">
         <img alt="profile" src="IMG-20250704-WA0009.jpg"/>
-        <a href="Vidushi Bhardwaj.pdf" download="Vidushi Bhardwaj.pdf" class="group relative mt-5 overflow-hidden border-[1px] border-[#E06031] text-[#E06031] hover:bg-[#E06031] transition-all duration-300 font-researcher tracking-wide whitespace-nowrap inline-flex items-center justify-center w-[200px] h-[40px]">
-                        <span class="transform transition-all duration-300 group-hover:opacity-0">Download CV</span>
-                        <i class="fas fa-download text-xl absolute transform translate-y-[-20px] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-white transition-all duration-300"></i>
-                    </a>
       </div>
     </div>
-  </section>
+    </section>
 
   <!-- ===== About ===== -->
   <section id="about" class="section">
@@ -148,32 +144,83 @@
     <p class="reveal">Click any card to see details.</p>
     <div class="projects" style="margin-top:16px">
       <article class="project-card reveal" data-project="p1">
-        <div class="project-thumb"><span class="pill">NLP •SpaCy •Python</span></div>
-        <div class="project-body">
-          <h3>Resume Scorer </h3>
-          <p class="muted"><b>A Python-based NLP resume scoring system that extracts skills and experience using SpaCy and ranks candidates fairly using a weighted, normalized machine learning scoring algorithm.
-.</b>b></p>
+        <div class="project-card-inner">
+          <div class="project-card-front">
+            <div class="project-thumb"><span class="pill">NLP •SpaCy •Python</span></div>
+            <div class="project-body">
+              <h3>Resume Scorer </h3>
+              <p class="muted"><b>A Python-based NLP resume scoring system that extracts skills and experience using SpaCy and ranks candidates fairly using a weighted, normalized machine learning scoring algorithm.</b></p>
+            </div>
+          </div>
+          <div class="project-card-back">
+            <div class="project-back-content">
+              <h3>Resume Scorer</h3>
+              <p class="muted">A comprehensive NLP-powered resume analysis tool that uses SpaCy for entity extraction and implements a fair, weighted scoring algorithm to evaluate candidate qualifications. Features include skill extraction, experience parsing, and normalized ranking.</p>
+              <a href="https://github.com/Vidushi-8465" target="_blank" class="btn primary" style="margin-top: 20px; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+            </div>
+          </div>
         </div>
       </article>
       <article class="project-card reveal" data-project="p2">
-        <div class="project-thumb"><span class="pill">React • API</span></div>
-        <div class="project-body">
-          <h3>Weatherly</h3>
-          <p class="muted">Minimal weather dashboard with hourly charts and saved cities.</p>
+        <div class="project-card-inner">
+          <div class="project-card-front">
+            <div class="project-thumb"><span class="pill">React • API</span></div>
+            <div class="project-body">
+              <h3>Weatherly</h3>
+              <p class="muted">Minimal weather dashboard with hourly charts and saved cities.</p>
+            </div>
+          </div>
+          <div class="project-card-back">
+            <div class="project-back-content">
+              <h3>Weatherly</h3>
+              <p class="muted">A clean and intuitive weather application built with React that provides real-time weather data, hourly forecasts, and the ability to save favorite cities. Features interactive charts and a responsive design.</p>
+              <a href="https://github.com/Vidushi-8465" target="_blank" class="btn primary" style="margin-top: 20px; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+            </div>
+          </div>
         </div>
       </article>
       <article class="project-card reveal" data-project="p3">
-        <div class="project-thumb"><span class="pill">Node • Auth</span></div>
-        <div class="project-body">
-          <h3>AuthKit</h3>
-          <p class="muted">Plug‑and‑play auth starter with JWT, sessions, and RBAC.</p>
+        <div class="project-card-inner">
+          <div class="project-card-front">
+            <div class="project-thumb"><span class="pill">Node • Auth</span></div>
+            <div class="project-body">
+              <h3>AuthKit</h3>
+              <p class="muted">Plug‑and‑play auth starter with JWT, sessions, and RBAC.</p>
+            </div>
+          </div>
+          <div class="project-card-back">
+            <div class="project-back-content">
+              <h3>AuthKit</h3>
+              <p class="muted">A complete authentication and authorization solution built with Node.js. Includes JWT token management, session handling, and role-based access control (RBAC). Perfect starter template for secure applications.</p>
+              <a href="https://github.com/Vidushi-8465" target="_blank" class="btn primary" style="margin-top: 20px; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+            </div>
+          </div>
         </div>
       </article>
       <article class="project-card reveal" data-project="p4">
-        <div class="project-thumb"><span class="pill">Docs • UI</span></div>
-        <div class="project-body">
-          <h3>DocuSpark</h3>
-          <p class="muted">Elegant documentation theme with search and dark mode.</p>
+        <div class="project-card-inner">
+          <div class="project-card-front">
+            <div class="project-thumb"><span class="pill">Docs • UI</span></div>
+            <div class="project-body">
+              <h3>DocuSpark</h3>
+              <p class="muted">Elegant documentation theme with search and dark mode.</p>
+            </div>
+          </div>
+          <div class="project-card-back">
+            <div class="project-back-content">
+              <h3>DocuSpark</h3>
+              <p class="muted">A beautiful documentation theme designed for clarity and ease of use. Features include full-text search functionality, dark mode support, and a responsive layout that works seamlessly across all devices.</p>
+              <a href="https://github.com/Vidushi-8465" target="_blank" class="btn primary" style="margin-top: 20px; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+            </div>
+          </div>
         </div>
       </article>
     </div>
