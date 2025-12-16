@@ -44,15 +44,7 @@
         <a class="btn primary" href="#projects">Got a project?</a>
         <a class="btn" href="Vidushi Bhardwaj.pdf" download="Vidushi Bhardwaj.pdf">Download CV</a>
       </div>
-      <div class="techs">
-        <span class="pill">HTML5</span>
-        <span class="pill">CSS</span>
-        <span class="pill">JavaScript</span>
-        <span class="pill">Node.js</span>
-        <span class="pill">React</span>
-        <span class="pill">Git</span>
-        <span class="pill">GitHub</span>
-      </div>
+      
     </div>
     <div class="hero-visual">
       <div class="ring" aria-hidden="true"></div>
@@ -235,16 +227,76 @@
 
 
   <!-- ===== Skills Section with 3D Rotating Sphere ===== -->
-    <section id="skills" class="section">
-      <h2>Skills</h2>
-      <p style="color: var(--muted); margin-bottom: 20px;">
-        Here’s a dynamic view of technologies I’ve explored and worked with.
-      </p>
+  <section id="skills" class="section">
+    <h2>Skills</h2>
+    <p style="color: var(--muted); margin-bottom: 24px;">
+      A quick view of what I work with across frontend, backend, cloud and tooling.
+    </p>
 
-      <!-- The 3D Sphere Container -->
+    <div class="skills-layout">
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <span class="skill-icon">💻</span>
+            <h3>Frontend Development</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="pill">React</span>
+            <span class="pill">Next.js</span>
+            <span class="pill">Tailwind CSS</span>
+            <span class="pill">TypeScript</span>
+            <span class="pill">HTML</span>
+            <span class="pill">CSS</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <span class="skill-icon">🛠</span>
+            <h3>Backend Development</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="pill">Node.js</span>
+            <span class="pill">Express</span>
+            <span class="pill">REST APIs</span>
+            <span class="pill">PostgreSQL</span>
+            <span class="pill">MongoDB</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <span class="skill-icon">☁️</span>
+            <h3>Cloud & DevOps</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="pill">CI/CD</span>
+            <span class="pill">Git</span>
+            <span class="pill">Linux</span>
+            <span class="pill">GitHub</span>
+            <span class="pill">Docker</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <span class="skill-icon">⚙️</span>
+            <h3>Tools & Technologies</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="pill">VS Code</span>
+            <span class="pill">Figma</span>
+            <span class="pill">Jenkins</span>
+            <span class="pill">GitLab</span>
+            <span class="pill">Vite</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Sphere on the side -->
       <div id="skills-sphere-container"></div>
-
-   </section>
+    </div>
+  </section>
   <!-- ===== Education ===== -->
   <section id="education" class="section">
     <h2>Education</h2>
@@ -303,6 +355,7 @@
   </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="https://unpkg.com/three@0.128.0/build/three.min.js" onload="window.THREE_LOADED = true;" onerror="console.error('Failed to load Three.js');"></script>
   <script src="script.js"></script>
   <script src="skills.js"></script>
 </body>
