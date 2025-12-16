@@ -116,3 +116,12 @@ projectCards.forEach((card) => {
     this.classList.toggle("flipped");
   });
 });
+
+/* ===== About Card Flip Effect ===== */
+const aboutCards = document.querySelectorAll("#about .card");
+
+aboutCards.forEach((card) => {
+  card.addEventListener("click", function () {
+    this.classList.toggle("flip");
+  });
+});
