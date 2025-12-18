@@ -68,19 +68,19 @@ const logoUrls = [
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
  // "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+ //"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+ // "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
  // "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
+ // "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+ // "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+ // "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
   
   // --- Backend / Frameworks ---
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
  // "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
  // "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain.svg",
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
+ //"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
  // "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
   
   // --- Databases ---
@@ -111,7 +111,7 @@ const logoUrls = [
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
   "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
-  "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg"
+  //"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg"
   
 ];
 
