@@ -125,3 +125,27 @@ aboutCards.forEach((card) => {
     this.classList.toggle("flip");
   });
 });
+
+document.getElementById("contact-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const status = document.getElementById("status-message");
+  status.textContent = "Sending...";
+
+  emailjs
+    .sendForm(
+      "YOUR_SERVICE_ID",
+      "YOUR_TEMPLATE_ID",
+      this
+    )
+    .then(
+      () => {
+        status.textContent = "Message sent successfully ✅";
+        this.reset();
+      },
+      (error) => {
+        status.textContent = "Failed to send message ❌";
+        console.error(error);
+      }
+    );
+});
